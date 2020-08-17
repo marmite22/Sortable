@@ -1254,6 +1254,7 @@
       forceFallback: false,
       fallbackClass: "sortable-fallback",
       fallbackOnBody: false,
+      fallbackOnElement: false,
       fallbackTolerance: 0,
       fallbackOffset: { x: 0, y: 0 },
       supportPointer:
@@ -1764,8 +1765,14 @@
       // Bug if using scale(): https://stackoverflow.com/questions/2637058
       // Not being adjusted for
       if (!ghostEl) {
-        let container = this.options.fallbackOnBody ? document.body : rootEl,
-          rect = getRect(dragEl, true, PositionGhostAbsolutely, true, container),
+      	let container;
+
+      	if(this.options.fallbackOnElement) {
+      		container = this.options.fallbackOnElement;
+  			} else {
+        	container = this.options.fallbackOnBody ? document.body : rootEl;
+  			}
+        let rect = getRect(dragEl, true, PositionGhostAbsolutely, true, container),
           options = this.options;
 
         // Position absolutely
