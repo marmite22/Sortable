@@ -931,7 +931,7 @@ Sortable.prototype = /** @lends Sortable.prototype */ {
 			} else {
       	container = this.options.fallbackOnBody ? document.body : rootEl;
 			}
-      let rect = getRect(dragEl, true, PositionGhostAbsolutely, true, container),
+      let rect = getRect(dragEl, true, PositionGhostAbsolutely, true, this.options.fallbackOnElement ? document.body : container),
         options = this.options;
 
       // Position absolutely
